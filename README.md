@@ -13,3 +13,7 @@ Hi Everyone! - Kurt
 
 
 Hi Everyone! - Kelsey 
+
+
+Hi Everyone! - Chika 
+
