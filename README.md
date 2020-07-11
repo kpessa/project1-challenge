@@ -1,4 +1,8 @@
-# project1-challenge
+# Project 1
+
+### Team Members
+
+![](Images/justice_league.jpg)
 
 Hi Everyone!
 
