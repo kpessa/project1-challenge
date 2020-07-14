@@ -1,8 +1,8 @@
 # Project 1
 
-### Team Members
+Google doc of proposal: https://docs.google.com/document/d/1eqhODgskdKG3WJYACiSXgGqDT9dvwouSgv8UbxjRPY0/edit?usp=sharing
 
-![](Images/justice_league.jpg)
+
 
 Hi Everyone!
 
