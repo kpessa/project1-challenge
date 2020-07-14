@@ -15,5 +15,7 @@ Hi Everyone! - Kurt
 Hi Everyone! - Kelsey 
 
 
-Hi Everyone! - Chika 
+Hi Everyone modified! - Chika 
+
+
 
