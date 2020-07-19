@@ -77,3 +77,7 @@ def get_group(group_name="CaseDateTime",option="default"):
         df=get_hospitalized_data()
     
     return df.groupby(by=group_name).count().reset_index()[[group_name,"Hospitalized"]].sort_values(by=group_name)
+
+def get_top10_counties_by_percentage():
+    df = get_hospitalized_data()
+    return (get_group("County").set_index("County")/df["Hospitalized"].sum()*100).sort_values(by="Hospitalized",ascending=False).head(10).style.format({"Hospitalized":"{:.1f}%"})
