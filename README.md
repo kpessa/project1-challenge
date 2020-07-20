@@ -126,7 +126,7 @@ ___
 
 ___
 
-### Part 2: Visualization
+### Part 2: Visualizations
 
 #### 1. Number of cases
 
@@ -169,6 +169,215 @@ ___
     
 </details>
 <br/>
+
+#### 3. Top 10 counties with total cases
+
+![](Images/steps_presentation/07_top_counties_all.png)
+
+<details><summary>Expand to view code</summary>
+
+```
+    #Top 10 counties with total cases
+    top10_county_cases = total_cases_county.sort_values(by="Case1",ascending=False).head(10)
+    top10_county_cases["Rank"] = np.arange(1,11)
+    top10_county_cases.set_index("Rank").style.format({"Case1":"{:,}"})
+
+    #Bar chart for total cases for top 10 counties
+    top10_county_cases.plot(kind='bar',x='County',y='Case1', title ="Total Cases for Top 10 Counties", figsize=(15, 10), color="blue")
+
+    plt.title("Total Hospitalizations for Top 10 Counties")
+    plt.xlabel("County")
+    plt.ylabel("Number of Cases")
+    plt.legend(["Number of Cases"])
+    plt.show()
+```
+    
+</details>
+<br/>
+
+#### 4. Top 10 counties trending view of total cases as a percentage of total (top 10)
+
+![](Images/steps_presentation/07_top_counties_as_perc.png)
+
+<details><summary>Expand to view code</summary>
+
+```
+code here
+```
+    
+</details>
+<br/>
+
+#### 5. Total number of cases by gender 
+
+![](Images/steps_presentation/08_cases_gender_all.png)
+
+<details><summary>Expand to view code</summary>
+
+```
+    # Total number of cases by gender
+    total_cases_gender = new_csv_data_df.groupby(by="Gender").count().reset_index().loc[:,["Gender","Case1"]]
+    total_cases_gender.rename(columns={"Gender": "Gender", "Case1": "Total Cases"})
+
+    # Pie chart for total number of cases by gender
+    total_cases_gender = new_csv_data_df["Gender"].value_counts()
+
+    colors=["pink", "blue", "green"]
+
+    explode=[0.1,0.1,0.1]
+
+    total_cases_gender.plot.pie(explode=explode,colors=colors, autopct="%1.1f%%", shadow=True, subplots=True, startangle=120);
+
+    plt.title("Total Number of Cases in Males vs. Females")
+```
+    
+</details>
+<br/>
+
+#### 6. Total of hospitalizations only
+
+![](Images/steps_presentation/09_total_hospitalizations_only.png)
+
+<details><summary>Expand to view code</summary>
+
+```
+    #Filter data to show only cases that include hospitalization
+    filt = new_csv_data_df["Hospitalized"] == "YES"
+    df = new_csv_data_df[filt]
+    df
+```
+    
+</details>
+<br/>
+
+#### 7. Percentage of hospitalizations by gender
+
+![](Images/steps_presentation/10_male_female_dist.png)
+
+<details><summary>Expand to view code</summary>
+
+```
+    # Calculate percentages male/female
+    df = step2.get_df_with_datetime_and_formatted_column()
+    filt = df['Gender']=='Male'
+    df = df[filt]
+    df = step2.get_hospitalizations_by_casedatetime(df)
+    male_by_week = df.groupby(pd.Grouper(freq='W',key='CaseDateTime')).sum()
+
+    df = step2.get_df_with_datetime_and_formatted_column()
+    filt = df['Gender']=='Female'
+    df = df[filt]
+    df = step2.get_hospitalizations_by_casedatetime(df)
+    female_by_week = df.groupby(pd.Grouper(freq='W',key='CaseDateTime')).sum()
+
+    male_perc = male_by_week['Hospitalized']/(male_by_week['Hospitalized']+female_by_week['Hospitalized'])*100
+    female_perc = female_by_week['Hospitalized']/(male_by_week['Hospitalized']+female_by_week['Hospitalized'])*100
+
+    # Plot data 
+    import matplotlib.pyplot as plt
+    plt.figure(figsize=(8,6))
+    p1 = plt.bar(male_perc.index,male_perc,width=5,label='male',alpha=0.5)
+    p2 = plt.bar(female_perc.index,female_perc,bottom=male_perc,width=5,label='female',alpha=0.5)
+    plt.hlines(y=50,xmin=male_perc.index[0],xmax=male_perc.index[-1],alpha=0.8)
+    plt.ylabel('Scores')
+    plt.legend(handles=[p1,p2])
+    plt.show()
+```
+    
+</details>
+<br/>
+
+#### 8. Percentage of hospitalizations by age group
+
+![](Images/steps_presentation/##.png)
+
+<details><summary>Expand to view code</summary>
+
+```
+    code here
+```
+    
+</details>
+<br/>
+
+#### 9. Hospitalizations by case
+
+![](Images/steps_presentation/11_hosp_by_case.png)
+
+<details><summary>Expand to view code</summary>
+
+```
+    code here
+```
+    
+</details>
+<br/>
+
+#### 10. Compare travel-related hospitalization to non-travelrelated cases
+
+![](Images/steps_presentation/##.png)
+
+<details><summary>Expand to view code</summary>
+
+```
+    code here
+```
+    
+</details>
+<br/>
+
+#### 11. Percentage of hospitalization before shut down
+
+![](Images/steps_presentation/##.png)
+
+<details><summary>Expand to view code</summary>
+
+```
+    code here
+```
+    
+</details>
+<br/>
+
+#### 12. Percentage of hospitalization during shut down
+
+![](Images/steps_presentation/##.png)
+
+<details><summary>Expand to view code</summary>
+
+```
+    code here
+```
+    
+</details>
+<br/>
+
+#### 13. Percentage of hospitalization after reopening
+
+![](Images/steps_presentation/##.png)
+
+<details><summary>Expand to view code</summary>
+
+```
+    code here
+```
+    
+</details>
+<br/>
+
+#### 14. Statistical testing between before and after reopening
+
+![](Images/steps_presentation/##.png)
+
+<details><summary>Expand to view code</summary>
+
+```
+    code here
+```
+    
+</details>
+<br/>
+
 
 
 
