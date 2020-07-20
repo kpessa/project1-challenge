@@ -142,6 +142,8 @@ ___
 </details>
 <br/>
 
+____
+
 #### 2. Total number of cases per county
 
 ![](Images/steps_presentation/06_number_cases_county_all.png)
@@ -170,6 +172,8 @@ ___
 </details>
 <br/>
 
+___
+
 #### 3. Top 10 counties with total cases
 
 ![](Images/steps_presentation/07_top_counties_all.png)
@@ -195,6 +199,8 @@ ___
 </details>
 <br/>
 
+____
+
 #### 4. Top 10 counties trending view of total cases as a percentage of total (top 10)
 
 ![](Images/steps_presentation/07_top_counties_as_perc.png)
@@ -207,6 +213,8 @@ code here
     
 </details>
 <br/>
+
+____
 
 #### 5. Total number of cases by gender 
 
@@ -234,6 +242,8 @@ code here
 </details>
 <br/>
 
+____
+
 #### 6. Total of hospitalizations only
 
 ![](Images/steps_presentation/09_total_hospitalizations_only.png)
@@ -249,6 +259,8 @@ code here
     
 </details>
 <br/>
+
+____
 
 #### 7. Percentage of hospitalizations by gender
 
@@ -287,6 +299,8 @@ code here
 </details>
 <br/>
 
+____
+
 #### 8. Percentage of hospitalizations by age group
 
 ![](Images/steps_presentation/##.png)
@@ -300,6 +314,8 @@ code here
 </details>
 <br/>
 
+____
+
 #### 9. Hospitalizations by case
 
 ![](Images/steps_presentation/11_hosp_by_case.png)
@@ -307,11 +323,22 @@ code here
 <details><summary>Expand to view code</summary>
 
 ```
-    code here
+    import seaborn as sns
+    new_csv_data_df['Count']=np.where(new_csv_data_df['Hospitalized']=='YES', 1,0)
+    new_csv_data_df.head()
+    new_csv_data_df['Count2']=1
+    new_csv_data_df['Case1']=pd.to_datetime(new_csv_data_df['Case1'])
+    case_plot_df=pd.DataFrame(new_csv_data_df.groupby(['Hospitalized', pd.Grouper(key='Case1', freq='W')])['Count2'].count())
+    case_plot_df.reset_index(inplace=True)
+    plt.subplots(figsize=[15,7])
+    sns.lineplot(x='Case1', y='Count2', data=case_plot_df, hue='Hospitalized')
+    plt.xticks(rotation=45)
 ```
     
 </details>
 <br/>
+
+____
 
 #### 10. Compare travel-related hospitalization to non-travelrelated cases
 
@@ -326,6 +353,8 @@ code here
 </details>
 <br/>
 
+____
+
 #### 11. Percentage of hospitalization before shut down
 
 ![](Images/steps_presentation/##.png)
@@ -339,6 +368,8 @@ code here
 </details>
 <br/>
 
+____
+
 #### 12. Percentage of hospitalization during shut down
 
 ![](Images/steps_presentation/##.png)
@@ -351,6 +382,8 @@ code here
     
 </details>
 <br/>
+
+____
 
 #### 13. Percentage of hospitalization after reopening
 
@@ -377,6 +410,12 @@ code here
     
 </details>
 <br/>
+
+____
+
+### Part 3: Conclussions 
+
+
 
 
 
