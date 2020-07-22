@@ -63,19 +63,19 @@ new_csv_data_df1
 <details><summary>Expand to view code</summary>
 
 ```python
-#df = step2.get_hospitalized_data()
-#df = step2.get_df_with_datetime_and_formatted_column()
-#df = step2.get_hospitalizations_by_casedatetime()
+    #df = step2.get_hospitalized_data()
+    #df = step2.get_df_with_datetime_and_formatted_column()
+    #df = step2.get_hospitalizations_by_casedatetime()
 
-group_name = "Gender"
-#group_name = "Age_group"
-#group_name = "Travel_related"
-#group_name = "Jurisdiction"
-#group_name = "County"
+    group_name = "Gender"
+    #group_name = "Age_group"
+    #group_name = "Travel_related"
+    #group_name = "Jurisdiction"
+    #group_name = "County"
 
-df = step2.get_group(group_name)
+    df = step2.get_group(group_name)
 
-df
+    df
 ```
 </details>
 <br/>
@@ -85,10 +85,6 @@ df
 ![](Images/steps_presentation/03_two_groups.png)
 
 <details><summary>Expand to view code</summary>
-<<<<<<< HEAD
-
-=======
->>>>>>> 46d16bd7b695ab113d4f2a0f42546f90137bebc3
 
 ```python
     df1, df2 = step2.get_groups_before_and_after_opening_date()
@@ -108,31 +104,6 @@ df
 ```
 </details>
 <br/>
-
-**CSV clean up**
-
-![](Images/steps_presentation/04_clean_database.png)
-
-<<<<<<< HEAD
-<details><summary>Expand to view code</summary>
-```
-    
-</details>
-<br/>
-
-___
-=======
---------
->>>>>>> 46d16bd7b695ab113d4f2a0f42546f90137bebc3
-
-### Part 1: Six (6) Steps for Hypothesis Testing 
-
-#### 1. Identify
-
-- **Populations** (divide Hospitalization data in two groups of data):
-    1. Prior to opening
-    2. After opening  
-* Decide on the **date**:
 
 ### Data Analysis and Visualization
 **Part 1: Six (6) Steps for Hypothesis Testing** 
@@ -164,7 +135,6 @@ ___
 <details><summary>Expand to view code</summary>
 
 ​```python
-<<<<<<< HEAD
     sample1 = df1['Hospitalized']
     sample2 = df2['Hospitalized']
     pd.DataFrame({
@@ -185,14 +155,6 @@ ___
         "Before Opening:": sample1.describe(),
         "After Opening": sample2.describe()
     }).style.format("{:.1f}")
-=======
-sample1 = df1['Hospitalized']
-sample2 = df2['Hospitalized']
-pd.DataFrame({
-    "Before Opening:": sample1.describe(),
-    "After Opening": sample2.describe()
-}).style.format("{:.1f}")
->>>>>>> 46d16bd7b695ab113d4f2a0f42546f90137bebc3
 ```
 </details>
 <br/>
@@ -466,7 +428,7 @@ ____
 
 #### 10. Compare travel-related hospitalization and travel-related cases
 
-![](Images/steps_presentation/##.png)
+![](Images/travel_related_cases_all.png)
 
 <details><summary>Expand to view code</summary>
 
@@ -534,35 +496,18 @@ plt.show()
 
 ____
 
-#### 13. Percentage of hospitalization after reopening
+#### 13. Statistical summaries 
 
-![](Images/steps_presentation/##.png)
 
-<details><summary>Expand to view code</summary>
+![](Images/avg_age_before.png)
 
-```
-    code here
-```
 
-</details>
-<br/>
+![](Images/avg_age_after.png)
 
-#### 14. Statistical testing between before and after reopening
 
-![](Images/steps_presentation/##.png)
+![](Images/summary_age_stat.png)
 
-<details><summary>Expand to view code</summary>
-
-```
-    code here
-```
-
-</details>
-<br/>
-
-____
-
-### Part 3: Conclussions 
+### Part 3: Discussion & Conclusions 
 
 
 
