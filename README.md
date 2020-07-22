@@ -1,4 +1,4 @@
-# Covid 19 Project
+# COVID 19 Project
 ![](Images/covid19_title.png)
 **Team Members:** Chika Ozodiegwu, Kelsey Wyatt, Libardo Lambrano, Kurt Pessa
 
@@ -11,9 +11,11 @@ ___
 
 ![](Images/florida_covid19_data.jpg)
 ___
+### Motivation & Summary Slide
 
-### Research Question
+**Research Question**
 > **“Has hospitalizations (#) in Florida changed since reopening?”**
+**Add why we decided to ask the question
 
 ### Process of Data Analysis
 ![](Images/data_process.png)
@@ -25,14 +27,34 @@ ___
 
 ```
     import pandas as pd
-    df = pd.read_csv("Resources/Florida_COVID19_Case_Line_Data.csv")
+    df = pd.read_csv("Resources/Florida_COVID19_Case_Line_new_Data.csv")
     df.head(3)
 ```
 </details>
 
 ___
 
-#### Step 2: Data Processiong & Data Cleaning
+#### Step 2: Data Processing & Data Cleaning
+
+**CSV clean up**
+
+![](Images/clean_csv.JPG)
+
+<details><summary>Expand to view code</summary>
+
+``` 
+    new_csv_data_df = df[['ObjectId', "County",'Age',"Age_group", "Gender", "Jurisdiction","Travel_related", "Hospitalized","Case1"]]
+
+    new_csv_data_df['Date'] = pd.to_datetime(new_csv_data_df['Case1']).dt.date
+    new_csv_data_df['Time'] = pd.to_datetime(new_csv_data_df['Case1']).dt.time
+
+    new_csv_data_df1 = new_csv_data_df[['ObjectId', "County",'Age',"Age_group", "Gender", "Jurisdiction", "Travel_related", "Hospitalized","Date"]]
+    new_csv_data_df1
+    
+```
+</details>
+<br/>
+
 
 **Single group**
 
@@ -63,21 +85,23 @@ ___
 ![](Images/steps_presentation/03_two_groups.png)
 
 <details><summary>Expand to view code</summary>
+<<<<<<< HEAD
 
-```
-    #df1, df2 = step2.get_groups_before_and_after_opening_date()
-    #df1, df2 = step2.get_groups_by_casedatetime()
+```python
+df1, df2 = step2.get_groups_before_and_after_opening_date()
+df1, df2 = step2.get_groups_by_casedatetime()
 
-    group_name = "Gender"
-    #group_name = "Age_group"
-    #group_name = "Travel_related"
-    #group_name = "Jurisdiction"
-    #group_name = "County"
 
-    df1,df2 = step2.get_groups(group_name)
+group_name = "Gender"
+group_name = "Age_group"
+group_name = "Travel_related"
+group_name = "Jurisdiction"
+group_name = "County"
 
-    #df
-    pd.concat([df1,df2],axis=1)
+df1,df2 = step2.get_groups(group_name)
+
+#df
+pd.concat([df1,df2],axis=1)
 ```
 </details>
 <br/>
@@ -87,15 +111,13 @@ ___
 ![](Images/steps_presentation/04_clean_database.png)
 
 <details><summary>Expand to view code</summary>
-
 ```
-    total_cases_county = new_csv_data_df.groupby(by="County").count().reset_index().loc[:,["County","Case1"]]
-    total_cases_county.rename(columns={"County": "County", "Case1": "Total Cases"})
-```
+    
 </details>
 <br/>
 
 ___
+<<<<<<< HEAD
 
 ### Part 1: Six (6) Steps for Hypothesis Testing 
 
@@ -105,20 +127,48 @@ ___
     1. Prior to opening
     2. After opening  
 * Decide on the **date**:
+
+### Data Analysis and Visualization
+**Part 1: Six (6) Steps for Hypothesis Testing** 
+
+**1. Identify**
+- **Population**: Florida residents and Transients
+(divide Hospitalization data in two groups):
+    1. **Date set 1**: Prior to opening (< 05-04-2020)
+    2. **Date set 2**: After opening  (> 05-04-2020)
+* **Information on dates**:
+
     * May 4th - restaurants opening to 25% capacity
     * June  (Miami opening beaches)
-- Distribution:
-    * Distribution
 
 #### 2. State the hypotheses
 - **H0**: There is no change in hospitalizations after Florida has reopened
-- **H1**: There is a change in hospitalizations after Florida has reopened
+- **H1**: There is an increase in hospitalizations after Florida has reopened
+
 
 #### 3. Characteristics of the comparison distribution
 
 ![](Images/image000040.png)
 
 - Population means, standard deviations
+
+#### 3. Interesting figures developed during exploration
+- Considered 14 days COVID-19 incubation period
+![](Images/before_and_after_reopening1.JPG)
+
+<details><summary>Expand to view code</summary>
+
+​```python
+    sample1 = df1['Hospitalized']
+    sample2 = df2['Hospitalized']
+    pd.DataFrame({
+        "Before Opening:": sample1.describe(),
+        "After Opening": sample2.describe()
+    }).style.format("{:.1f}")
+    
+```
+</details>
+<br/>
 
 ```python
 sample1 = df1['Hospitalized']
@@ -132,11 +182,23 @@ pd.DataFrame({
 ![](Images/image000039.png)
 
 #### 4. Critical values
-
 - p = 0.05
+=======
 - Our hypothesis is nondirectional so our hypothesis test is **two-tailed**
+- **Test used** = T-Test
+- **p-value** = 0.0006
 
-#### 5. Calculate
+<details><summary>Expand to view code</summary>
+
+```python
+    statistic, pvalue = stats.ttest_ind_from_stats(grouped_before["Hospitalized"].mean(),grouped_before["Hospitalized"].std(),grouped_before["Hospitalized"].size,grouped_after["Hospitalized"].mean(),grouped_after["Hospitalized"].std(),grouped_after["Hospitalized"].size)
+    print(f"p-value: {pvalue:.4f}")
+    
+```
+</details>
+<br/>
+
+#### 5. Distribution 
 
 ![](Images/before_and_after_histogram.png)
 
@@ -153,7 +215,7 @@ print(f"p-value: {pvalue:.8f}")
 
 ___
 
-### Part 2: Visualizations
+### Part 2: Analyis and Visualizations
 
 #### 1. Number of cases
 
