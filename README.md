@@ -25,7 +25,7 @@ ___
 
 <details><summary>Expand to view code</summary>
 
-```
+```python
     import pandas as pd
     df = pd.read_csv("Resources/Florida_COVID19_Case_Line_new_Data.csv")
     df.head(3)
@@ -42,19 +42,19 @@ ___
 
 <details><summary>Expand to view code</summary>
 
-``` 
-    new_csv_data_df = df[['ObjectId', "County",'Age',"Age_group", "Gender", "Jurisdiction","Travel_related", "Hospitalized","Case1"]]
+```python
 
-    new_csv_data_df['Date'] = pd.to_datetime(new_csv_data_df['Case1']).dt.date
-    new_csv_data_df['Time'] = pd.to_datetime(new_csv_data_df['Case1']).dt.time
+new_csv_data_df = df[['ObjectId', "County",'Age',"Age_group", "Gender", "Jurisdiction","Travel_related", "Hospitalized","Case1"]]
 
-    new_csv_data_df1 = new_csv_data_df[['ObjectId', "County",'Age',"Age_group", "Gender", "Jurisdiction", "Travel_related", "Hospitalized","Date"]]
-    new_csv_data_df1
+new_csv_data_df['Date'] = pd.to_datetime(new_csv_data_df['Case1']).dt.date
+new_csv_data_df['Time'] = pd.to_datetime(new_csv_data_df['Case1']).dt.time
+
+new_csv_data_df1 = new_csv_data_df[['ObjectId', "County",'Age',"Age_group", "Gender", "Jurisdiction", "Travel_related", "Hospitalized","Date"]]
+new_csv_data_df1
     
 ```
-</details>
-<br/>
 
+</details>
 
 **Single group**
 
@@ -62,20 +62,20 @@ ___
 
 <details><summary>Expand to view code</summary>
 
-```
-    #df = step2.get_hospitalized_data()
-    #df = step2.get_df_with_datetime_and_formatted_column()
-    #df = step2.get_hospitalizations_by_casedatetime()
+```python
+#df = step2.get_hospitalized_data()
+#df = step2.get_df_with_datetime_and_formatted_column()
+#df = step2.get_hospitalizations_by_casedatetime()
 
-    group_name = "Gender"
-    #group_name = "Age_group"
-    #group_name = "Travel_related"
-    #group_name = "Jurisdiction"
-    #group_name = "County"
+group_name = "Gender"
+#group_name = "Age_group"
+#group_name = "Travel_related"
+#group_name = "Jurisdiction"
+#group_name = "County"
 
-    df = step2.get_group(group_name)
+df = step2.get_group(group_name)
 
-    df
+df
 ```
 </details>
 <br/>
@@ -85,7 +85,6 @@ ___
 ![](Images/steps_presentation/03_two_groups.png)
 
 <details><summary>Expand to view code</summary>
-<<<<<<< HEAD
 
 ```python
 df1, df2 = step2.get_groups_before_and_after_opening_date()
@@ -110,14 +109,7 @@ pd.concat([df1,df2],axis=1)
 
 ![](Images/steps_presentation/04_clean_database.png)
 
-<details><summary>Expand to view code</summary>
-```
-    
-</details>
-<br/>
-
-___
-<<<<<<< HEAD
+--------
 
 ### Part 1: Six (6) Steps for Hypothesis Testing 
 
@@ -159,18 +151,6 @@ ___
 <details><summary>Expand to view code</summary>
 
 ​```python
-    sample1 = df1['Hospitalized']
-    sample2 = df2['Hospitalized']
-    pd.DataFrame({
-        "Before Opening:": sample1.describe(),
-        "After Opening": sample2.describe()
-    }).style.format("{:.1f}")
-    
-```
-</details>
-<br/>
-
-```python
 sample1 = df1['Hospitalized']
 sample2 = df2['Hospitalized']
 pd.DataFrame({
@@ -178,6 +158,8 @@ pd.DataFrame({
     "After Opening": sample2.describe()
 }).style.format("{:.1f}")
 ```
+
+</details>
 
 ![](Images/image000039.png)
 
@@ -225,11 +207,12 @@ ___
 
 <details><summary>Expand to view code</summary>
 
+```python
+Total_covid_cases = new_csv_data_df["ObjectId"].nunique()
+Total_covid_cases = pd.DataFrame({"Total Number of Cases": [Total_covid_cases]})
+Total_covid_cases
 ```
-    Total_covid_cases = new_csv_data_df["ObjectId"].nunique()
-    Total_covid_cases = pd.DataFrame({"Total Number of Cases": [Total_covid_cases]})
-    Total_covid_cases
-```
+
 </details>
 <br/>
 
@@ -241,23 +224,23 @@ ____
 
 <details><summary>Expand to view code</summary>
 
-```
-    #Total number of cases per county
-    total_cases_county = new_csv_data_df.groupby(by="County").count().reset_index().loc[:,["County","Case1"]]
-    total_cases_county.rename(columns={"County": "County", "Case1": "Total Cases"})
+```python
+#Total number of cases per county
+total_cases_county = new_csv_data_df.groupby(by="County").count().reset_index().loc[:,["County","Case1"]]
+total_cases_county.rename(columns={"County": "County", "Case1": "Total Cases"})
 
-    #Total number of cases per county sorted
-    total_cases_county = total_cases_county.sort_values('Case1',ascending=False)
-    total_cases_county.head(20)
+#Total number of cases per county sorted
+total_cases_county = total_cases_county.sort_values('Case1',ascending=False)
+total_cases_county.head(20)
 
-    #Bar chart for total cases per county
-    total_cases_county.plot(kind='bar',x='County',y='Case1', title ="Total Cases per County", figsize=(15, 10), color="blue")
+#Bar chart for total cases per county
+total_cases_county.plot(kind='bar',x='County',y='Case1', title ="Total Cases per County", figsize=(15, 10), color="blue")
 
-    plt.title("Total Cases per County")
-    plt.xlabel("County")
-    plt.ylabel("Number of Cases")
-    plt.legend(["Number of Cases"])
-    plt.show()
+plt.title("Total Cases per County")
+plt.xlabel("County")
+plt.ylabel("Number of Cases")
+plt.legend(["Number of Cases"])
+plt.show()
 ```
 
 </details>
@@ -271,20 +254,20 @@ ___
 
 <details><summary>Expand to view code</summary>
 
-```
-    #Top 10 counties with total cases
-    top10_county_cases = total_cases_county.sort_values(by="Case1",ascending=False).head(10)
-    top10_county_cases["Rank"] = np.arange(1,11)
-    top10_county_cases.set_index("Rank").style.format({"Case1":"{:,}"})
+```python
+#Top 10 counties with total cases
+top10_county_cases = total_cases_county.sort_values(by="Case1",ascending=False).head(10)
+top10_county_cases["Rank"] = np.arange(1,11)
+top10_county_cases.set_index("Rank").style.format({"Case1":"{:,}"})
 
-    #Bar chart for total cases for top 10 counties
-    top10_county_cases.plot(kind='bar',x='County',y='Case1', title ="Total Cases for Top 10 Counties", figsize=(15, 10), color="blue")
+#Bar chart for total cases for top 10 counties
+top10_county_cases.plot(kind='bar',x='County',y='Case1', title ="Total Cases for Top 10 Counties", figsize=(15, 10), color="blue")
 
-    plt.title("Total Hospitalizations for Top 10 Counties")
-    plt.xlabel("County")
-    plt.ylabel("Number of Cases")
-    plt.legend(["Number of Cases"])
-    plt.show()
+plt.title("Total Hospitalizations for Top 10 Counties")
+plt.xlabel("County")
+plt.ylabel("Number of Cases")
+plt.legend(["Number of Cases"])
+plt.show()
 ```
 
 </details>
