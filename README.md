@@ -22,7 +22,7 @@ ___
 ![](Images/steps_presentation/01_data_load.png)
 
 <details><summary>Expand to view code</summary>
-    
+
 ```
     import pandas as pd
     df = pd.read_csv("Resources/Florida_COVID19_Case_Line_Data.csv")
@@ -39,7 +39,7 @@ ___
 ![](Images/steps_presentation/02_one_group.png)
 
 <details><summary>Expand to view code</summary>
-    
+
 ```
     #df = step2.get_hospitalized_data()
     #df = step2.get_df_with_datetime_and_formatted_column()
@@ -63,7 +63,7 @@ ___
 ![](Images/steps_presentation/03_two_groups.png)
 
 <details><summary>Expand to view code</summary>
-    
+
 ```
     #df1, df2 = step2.get_groups_before_and_after_opening_date()
     #df1, df2 = step2.get_groups_by_casedatetime()
@@ -87,7 +87,7 @@ ___
 ![](Images/steps_presentation/04_clean_database.png)
 
 <details><summary>Expand to view code</summary>
-    
+
 ```
     total_cases_county = new_csv_data_df.groupby(by="County").count().reset_index().loc[:,["County","Case1"]]
     total_cases_county.rename(columns={"County": "County", "Case1": "Total Cases"})
@@ -100,6 +100,7 @@ ___
 ### Part 1: Six (6) Steps for Hypothesis Testing 
 
 #### 1. Identify
+
 - **Populations** (divide Hospitalization data in two groups of data):
     1. Prior to opening
     2. After opening  
@@ -114,15 +115,41 @@ ___
 - **H1**: There is a change in hospitalizations after Florida has reopened
 
 #### 3. Characteristics of the comparison distribution
+
+![](Images/image000040.png)
+
 - Population means, standard deviations
 
+```python
+sample1 = df1['Hospitalized']
+sample2 = df2['Hospitalized']
+pd.DataFrame({
+    "Before Opening:": sample1.describe(),
+    "After Opening": sample2.describe()
+}).style.format("{:.1f}")
+```
+
+![](Images/image000039.png)
+
 #### 4. Critical values
+
 - p = 0.05
 - Our hypothesis is nondirectional so our hypothesis test is **two-tailed**
 
 #### 5. Calculate
 
-#### 6. Decide!
+![](Images/before_and_after_histogram.png)
+
+```python
+statistic, pvalue = stats.ttest_ind_from_stats(sample1.mean(),sample1.std(),sample1.size,sample2.mean(),sample2.std(),sample2.size)
+print(f"p-value: {pvalue:.8f}")
+```
+
+**p-value** = 0.00000026
+
+#### 6. Decide
+
+* We are able to ***reject*** the null hypothesis that there was no change. With the data set we analyzed, there was a significant change from before to after reopening in Florida.
 
 ___
 
@@ -133,7 +160,7 @@ ___
 ![](Images/steps_presentation/05_number_cases.png)
 
 <details><summary>Expand to view code</summary>
-    
+
 ```
     Total_covid_cases = new_csv_data_df["ObjectId"].nunique()
     Total_covid_cases = pd.DataFrame({"Total Number of Cases": [Total_covid_cases]})
@@ -168,7 +195,7 @@ ____
     plt.legend(["Number of Cases"])
     plt.show()
 ```
-    
+
 </details>
 <br/>
 
@@ -195,7 +222,7 @@ ___
     plt.legend(["Number of Cases"])
     plt.show()
 ```
-    
+
 </details>
 <br/>
 
@@ -210,7 +237,7 @@ ____
 ```
 code here
 ```
-    
+
 </details>
 <br/>
 
@@ -238,7 +265,7 @@ ____
 
     plt.title("Total Number of Cases in Males vs. Females")
 ```
-    
+
 </details>
 <br/>
 
@@ -256,7 +283,7 @@ ____
     df = new_csv_data_df[filt]
     df
 ```
-    
+
 </details>
 <br/>
 
@@ -295,7 +322,7 @@ ____
     plt.legend(handles=[p1,p2])
     plt.show()
 ```
-    
+
 </details>
 <br/>
 
@@ -310,7 +337,7 @@ ____
 ```
     code here
 ```
-    
+
 </details>
 <br/>
 
@@ -334,7 +361,7 @@ ____
     sns.lineplot(x='Case1', y='Count2', data=case_plot_df, hue='Hospitalized')
     plt.xticks(rotation=45)
 ```
-    
+
 </details>
 <br/>
 
@@ -349,7 +376,7 @@ ____
 ```
     code here
 ```
-    
+
 </details>
 <br/>
 
@@ -364,7 +391,7 @@ ____
 ```
     code here
 ```
-    
+
 </details>
 <br/>
 
@@ -379,7 +406,7 @@ ____
 ```
     code here
 ```
-    
+
 </details>
 <br/>
 
@@ -394,7 +421,7 @@ ____
 ```
     code here
 ```
-    
+
 </details>
 <br/>
 
@@ -407,7 +434,7 @@ ____
 ```
     code here
 ```
-    
+
 </details>
 <br/>
 
