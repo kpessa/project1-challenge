@@ -85,23 +85,23 @@ ___
 ![](Images/steps_presentation/03_two_groups.png)
 
 <details><summary>Expand to view code</summary>
-<<<<<<< HEAD
+
 
 ```python
-df1, df2 = step2.get_groups_before_and_after_opening_date()
-df1, df2 = step2.get_groups_by_casedatetime()
+    df1, df2 = step2.get_groups_before_and_after_opening_date()
+    df1, df2 = step2.get_groups_by_casedatetime()
 
 
-group_name = "Gender"
-group_name = "Age_group"
-group_name = "Travel_related"
-group_name = "Jurisdiction"
-group_name = "County"
+    group_name = "Gender"
+    group_name = "Age_group"
+    group_name = "Travel_related"
+    group_name = "Jurisdiction"
+    group_name = "County"
 
-df1,df2 = step2.get_groups(group_name)
+    df1,df2 = step2.get_groups(group_name)
 
-#df
-pd.concat([df1,df2],axis=1)
+    #df
+    pd.concat([df1,df2],axis=1)
 ```
 </details>
 <br/>
@@ -117,7 +117,6 @@ pd.concat([df1,df2],axis=1)
 <br/>
 
 ___
-<<<<<<< HEAD
 
 ### Part 1: Six (6) Steps for Hypothesis Testing 
 
@@ -146,14 +145,13 @@ ___
 - **H1**: There is an increase in hospitalizations after Florida has reopened
 
 
-#### 3. Characteristics of the comparison distribution
+#### 3. Interesting figures developed during exploration
+- Considered 14 days COVID-19 incubation period
 
 ![](Images/image000040.png)
 
 - Population means, standard deviations
 
-#### 3. Interesting figures developed during exploration
-- Considered 14 days COVID-19 incubation period
 ![](Images/before_and_after_reopening1.JPG)
 
 <details><summary>Expand to view code</summary>
@@ -170,14 +168,18 @@ ___
 </details>
 <br/>
 
-```python
-sample1 = df1['Hospitalized']
-sample2 = df2['Hospitalized']
-pd.DataFrame({
-    "Before Opening:": sample1.describe(),
-    "After Opening": sample2.describe()
-}).style.format("{:.1f}")
+<details><summary>Expand to view code</summary>
+
+    ```python
+    sample1 = df1['Hospitalized']
+    sample2 = df2['Hospitalized']
+    pd.DataFrame({
+        "Before Opening:": sample1.describe(),
+        "After Opening": sample2.describe()
+    }).style.format("{:.1f}")
 ```
+</details>
+<br/>
 
 ![](Images/image000039.png)
 
@@ -199,16 +201,16 @@ pd.DataFrame({
 <br/>
 
 #### 5. Distribution 
-  **add kurt     
-
-
+     
 ![](Images/before_and_after_histogram.png)
 
+<details><summary>Expand to view code</summary>
 ```python
-statistic, pvalue = stats.ttest_ind_from_stats(sample1.mean(),sample1.std(),sample1.size,sample2.mean(),sample2.std(),sample2.size)
-print(f"p-value: {pvalue:.8f}")
+    statistic, pvalue = stats.ttest_ind_from_stats(sample1.mean(),sample1.std(),sample1.size,sample2.mean(),sample2.std(),sample2.size)
+    print(f"p-value: {pvalue:.8f}")
 ```
-
+</details>
+<br/>
 **p-value** = 0.00000026
 
 #### 6. Decide
@@ -466,14 +468,24 @@ ____
 
 ____
 
-#### 11. Percentage of hospitalization before shut down
+#### 11. Hospitalization by county before reopening 
 
-![](Images/steps_presentation/##.png)
+![](Images/total_hospitalization_before.JPG)
 
 <details><summary>Expand to view code</summary>
 
-```
-    code here
+```python
+    my_colors = ['r', 'g', 'b', 'k', 'y', 'm', 'c']  # red, green, blue, black, etc.
+    my_colormap = ListedColormap(my_colors)
+
+    Before_hosp_county = hosp_filter_df_new["County"].value_counts().plot(kind= "barh", colormap = my_colormap, figsize=(20, 15))
+
+    #chart title
+    plt.title("Total Hospitalization for each county before reopening")
+    plt.xlabel("County")
+    plt.ylabel("Number of Hospitalization")
+
+    plt.show()
 ```
 
 </details>
@@ -481,14 +493,21 @@ ____
 
 ____
 
-#### 12. Percentage of hospitalization during shut down
+#### 12. Hospitalization by county after reopening
 
-![](Images/steps_presentation/##.png)
+![](Images/total_hospitalization_after.JPG)
 
 <details><summary>Expand to view code</summary>
 
 ```
-    code here
+    After_hosp_county = hosp_filter_df_new1["County"].value_counts().plot(kind= "barh", figsize=(20, 15))
+
+#chart title
+plt.title("Total Hospitalization for each county after reopening")
+plt.xlabel("County")
+plt.ylabel("Number of Hospitalization")
+
+plt.show()
 ```
 
 </details>
