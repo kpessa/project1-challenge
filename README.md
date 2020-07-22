@@ -158,14 +158,15 @@ ___
 <br/>
 
 #### 5. Distribution 
+  **add kurt     
 
-#### 6. Decide!
+
 
 ___
 
-### Part 2: Analyis and Visualizations
+### Part 2: Analysis and Visualizations
 
-#### 1. Number of cases
+#### 1. Total number of cases
 
 ![](Images/steps_presentation/05_number_cases.png)
 
@@ -281,9 +282,9 @@ ____
 
 ____
 
-#### 6. Total of hospitalizations only
+#### 6. Total Number of Hospitalizations
 
-![](Images/steps_presentation/09_total_hospitalizations_only.png)
+![](Images/total_hospitalization.JPG)
 
 <details><summary>Expand to view code</summary>
 
