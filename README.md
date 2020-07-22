@@ -339,14 +339,26 @@ ____
 
 ____
 
-#### 8. Percentage of hospitalizations by age group
+#### 8. Total and Percentage of hospitalizations by age group
 
-![](Images/steps_presentation/##.png)
+![](Images/percentage_age_group_all.png)
 
 <details><summary>Expand to view code</summary>
 
-```
-    code here
+```python 
+    Total_hospitalized = hosp_filter_df["Hospitalized"].count()
+    
+    demo_age_grouped = hosp_filter_df.groupby("Age_group")
+    total_hospitalize_count = demo_age_grouped["Hospitalized"].value_counts()
+
+    age_percentage = (total_hospitalize_count/Total_hospitalized) * 100    
+    Age_demographic_summary["Total Count"].plot(kind= "bar", color = "g", figsize=(20, 10))
+
+    plt.title("Hospitalized Patients by age")
+    plt.xlabel("Age Group, Hospitalized")
+    plt.ylabel("Number of Hospitalization")
+
+    plt.show()
 ```
     
 </details>
@@ -378,14 +390,22 @@ ____
 
 ____
 
-#### 10. Compare travel-related hospitalization to non-travelrelated cases
+#### 10. Compare travel-related hospitalization and travel-related cases
 
 ![](Images/steps_presentation/##.png)
 
 <details><summary>Expand to view code</summary>
 
-```
-    code here
+```python
+    travel_vs_nontravel = new_csv_data_df1["Travel_related"].value_counts()
+  
+
+    colors = ['green', 'red', 'orange']
+    explode = (0.1, 0, 0)
+    travel_vs_nontravel.plot(kind="pie", colors= colors, explode= explode, startangle=140, shadow = True, autopct='%1.1f%%')
+    plt.title("Travel Related Cases")
+    plt.show()
+
 ```
     
 </details>
