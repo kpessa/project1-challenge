@@ -202,6 +202,7 @@ pd.DataFrame({
   **add kurt     
 
 
+<<<<<<< HEAD
 ![](Images/before_and_after_histogram.png)
 
 ```python
@@ -214,6 +215,8 @@ print(f"p-value: {pvalue:.8f}")
 #### 6. Decide
 
 * We are able to ***reject*** the null hypothesis that there was no change. With the data set we analyzed, there was a significant change from before to after reopening in Florida.
+=======
+>>>>>>> 2ed7d085b88bda7763d102e6f93e629eed439585
 
 ___
 
@@ -392,26 +395,14 @@ ____
 
 ____
 
-#### 8. Total and Percentage of hospitalizations by age group
+#### 8. Percentage of hospitalizations by age group
 
-![](Images/percentage_age_group_all.png)
+![](Images/steps_presentation/##.png)
 
 <details><summary>Expand to view code</summary>
 
-```python 
-    Total_hospitalized = hosp_filter_df["Hospitalized"].count()
-    
-    demo_age_grouped = hosp_filter_df.groupby("Age_group")
-    total_hospitalize_count = demo_age_grouped["Hospitalized"].value_counts()
-
-    age_percentage = (total_hospitalize_count/Total_hospitalized) * 100    
-    Age_demographic_summary["Total Count"].plot(kind= "bar", color = "g", figsize=(20, 10))
-
-    plt.title("Hospitalized Patients by age")
-    plt.xlabel("Age Group, Hospitalized")
-    plt.ylabel("Number of Hospitalization")
-
-    plt.show()
+```
+    code here
 ```
 
 </details>
@@ -443,22 +434,14 @@ ____
 
 ____
 
-#### 10. Compare travel-related hospitalization and travel-related cases
+#### 10. Compare travel-related hospitalization to non-travelrelated cases
 
 ![](Images/steps_presentation/##.png)
 
 <details><summary>Expand to view code</summary>
 
-```python
-    travel_vs_nontravel = new_csv_data_df1["Travel_related"].value_counts()
-  
-
-    colors = ['green', 'red', 'orange']
-    explode = (0.1, 0, 0)
-    travel_vs_nontravel.plot(kind="pie", colors= colors, explode= explode, startangle=140, shadow = True, autopct='%1.1f%%')
-    plt.title("Travel Related Cases")
-    plt.show()
-
+```
+    code here
 ```
 
 </details>
