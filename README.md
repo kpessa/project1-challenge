@@ -124,7 +124,7 @@ ___
 - **H0**: There is no change in hospitalizations after Florida has reopened
 - **H1**: There is an increase in hospitalizations after Florida has reopened
 
-#### 3. Characteristics of the comparison distribution
+#### 3. Interesting figures developed during exploration
 - Considered 14 days COVID-19 incubation period
 ![](Images/before_and_after_reopening1.JPG)
 
@@ -156,6 +156,10 @@ ___
 ```
 </details>
 <br/>
+
+#### 5. Distribution 
+
+#### 6. Decide!
 
 ___
 
