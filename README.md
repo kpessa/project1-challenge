@@ -126,8 +126,28 @@ new_csv_data_df1
 </details>
 <br/>
 
-### Data Analysis and Visualization
-**Part 1: Six (6) Steps for Hypothesis Testing** 
+# COVID-19
+---------
+<table align="left">
+    <tr align="left">
+        <th width="15%">
+            <img src=Images/magnifying_glass.png align="left">
+        </th>
+        <th align="left"> 
+            <p align="left" style="font-size:18px"> Decided to look at hospitalizations!</p>
+            <ol align="left" style="font-style:normal;font-family:arial;font-size:14px;">
+                <li align="left" style="margin:15px 0"> Testing agnostic</li>
+                <li align="left" style="margin:15px 0"> Can indicate:
+                    <ol style="margin:10px 0">
+                        <li style="margin:10px 0"> Case burden</li>
+                        <li style="margin:10px 0"> Financial impact</li>
+                        <li style="margin:10px 0"> Severity of cases</li>
+                    </ol>
+                </li>
+            </ol>
+        </th>
+    </tr>
+</table>
 
 **1. Identify**
 - **Population**: Florida residents and Transients
