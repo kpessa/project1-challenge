@@ -52,7 +52,55 @@ ___
     
 **KURT**
 
-<details><summary>Expand to view</summary>
+# COVID-19
+---------
+<table align="left">
+    <tr align="left">
+        <th width="15%">
+            <img src=Images/magnifying_glass.png align="left">
+        </th>
+        <th align="left"> 
+            <p align="left" style="font-size:18px"> Decided to look at hospitalizations!</p>
+            <ol align="left" style="font-style:normal;font-family:arial;font-size:14px;">
+                <li align="left" style="margin:15px 0"> Testing agnostic</li>
+                <li align="left" style="margin:15px 0"> Can indicate:
+                    <ol style="margin:10px 0">
+                        <li style="margin:10px 0"> Case burden</li>
+                        <li style="margin:10px 0"> Financial impact</li>
+                        <li style="margin:10px 0"> Severity of cases</li>
+                    </ol>
+                </li>
+            </ol>
+        </th>
+    </tr>
+</table>
+
+<details><summary>Expand to view code</summary>
+
+```python
+# Plotting summary of hospitalizations in Florida
+df = step2.get_hospitalizations_by_casedatetime()
+plt.figure(figsize=(10,4))
+plt.scatter(df['CaseDateTime'],df['Hospitalized'])
+plt.title("Hospitalization in Florida")
+plt.ylabel("Hospitalized")
+plt.xlim((dt.date(2020,3,1),dt.date(2020,8,1)))
+
+# Using mdates.ConciseDateFormatter for xlabels
+locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
+formatter = mdates.ConciseDateFormatter(locator)
+ax = plt.gca()
+ax.xaxis.set_major_formatter(formatter)
+plt.xlabel("Date")
+plt.savefig("Images/hospitalization_in_florida_summary.png")
+```
+
+</details>
+<br/>
+
+![](Images/hospitalization_in_florida_summary.png)
+
+<details><summary>Data Processing & Data Cleaning</summary>
     
 #### Step 2: Data Processing & Data Cleaning
 
@@ -126,53 +174,8 @@ new_csv_data_df1
 </details>
 <br/>
 
-# COVID-19
----------
-<table align="left">
-    <tr align="left">
-        <th width="15%">
-            <img src=Images/magnifying_glass.png align="left">
-        </th>
-        <th align="left"> 
-            <p align="left" style="font-size:18px"> Decided to look at hospitalizations!</p>
-            <ol align="left" style="font-style:normal;font-family:arial;font-size:14px;">
-                <li align="left" style="margin:15px 0"> Testing agnostic</li>
-                <li align="left" style="margin:15px 0"> Can indicate:
-                    <ol style="margin:10px 0">
-                        <li style="margin:10px 0"> Case burden</li>
-                        <li style="margin:10px 0"> Financial impact</li>
-                        <li style="margin:10px 0"> Severity of cases</li>
-                    </ol>
-                </li>
-            </ol>
-        </th>
-    </tr>
-</table>
-
-<details><summary>Expand to view code</summary>
-
-```python
-# Plotting summary of hospitalizations in Florida
-df = step2.get_hospitalizations_by_casedatetime()
-plt.figure(figsize=(10,4))
-plt.scatter(df['CaseDateTime'],df['Hospitalized'])
-plt.title("Hospitalization in Florida")
-plt.ylabel("Hospitalized")
-plt.xlim((dt.date(2020,3,1),dt.date(2020,8,1)))
-
-# Using mdates.ConciseDateFormatter for xlabels
-locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
-formatter = mdates.ConciseDateFormatter(locator)
-ax = plt.gca()
-ax.xaxis.set_major_formatter(formatter)
-plt.xlabel("Date")
-plt.savefig("Images/hospitalization_in_florida_summary.png")
-```
-
 </details>
 <br/>
-
-![](Images/hospitalization_in_florida_summary.png)
 
 #### Research Question to Answer:
 * “Has hospitalizations (#) in Florida changed since reopening?"
@@ -243,11 +246,41 @@ pd.DataFrame({
 
 ![](Images/image000040.png)
 
+
+
+#### 5. Distribution 
+
+<details><summary>Expand to view code</summary>
+
+```python
+# Scatter Plot of Data
+plt.figure(figsize=(10,6))
+plt.subplot(2, 1, 1)
+plt.scatter(range(len(sample1)), sample1, label="before")
+plt.scatter(range(len(sample2)), sample2, label="after")
+plt.legend()
+
+# Histogram Plot of Data
+plt.subplot(2, 1, 2)
+plt.hist(sample1, 20, density=True, alpha=0.7, label="before")
+plt.hist(sample2, 20, density=True, alpha=0.7, label="after")
+plt.axvline(sample1.mean(), color='k', linestyle='dashed', linewidth=1)
+plt.axvline(sample2.mean(), color='k', linestyle='dashed', linewidth=1)
+plt.legend()  
+plt.savefig("Images/before_and_after_histogram.png")
+plt.show()
+```
+
+</details>
+<br/>
+
+![](Images/before_and_after_histogram.png)
+
+
 #### 4. Critical values
 - p = 0.05
 - Our hypothesis is nondirectional so our hypothesis test is **two-tailed**
 - **Test used** = T-Test
-- **p-value** = 0.0006
 
 <details><summary>Expand to view code</summary>
 
@@ -256,18 +289,6 @@ pd.DataFrame({
 statistic, pvalue = stats.ttest_ind_from_stats(grouped_before["Hospitalized"].mean(),grouped_before["Hospitalized"].std(),grouped_before["Hospitalized"].size,grouped_after["Hospitalized"].mean(),grouped_after["Hospitalized"].std(),grouped_after["Hospitalized"].size)
 print(f"p-value: {pvalue:.4f}")
     
-```
-</details>
-<br/>
-
-#### 5. Distribution 
-     
-![](Images/before_and_after_histogram.png)
-
-<details><summary>Expand to view code</summary>
-```python
-    statistic, pvalue = stats.ttest_ind_from_stats(sample1.mean(),sample1.std(),sample1.size,sample2.mean(),sample2.std(),sample2.size)
-    print(f"p-value: {pvalue:.8f}")
 ```
 </details>
 <br/>
