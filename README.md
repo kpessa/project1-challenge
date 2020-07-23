@@ -188,6 +188,9 @@ new_csv_data_df1
     2. After opening  
 * Decide on the **date**:
     * May 4th - restaurants opening to 25% capacity
+
+![](Images/reopening.png)  
+
 * Pick sample size:
     * Decided on **30 days** before and after
 
@@ -299,7 +302,7 @@ print(f"p-value: {pvalue:.4f}")
 
 #### 6. Decide
 
-* We are able to ***reject*** the null hypothesis that there was no change. With the data set we analyzed, there was a significant change from before to after reopening in Florida.
+* Because p (0.00000026) < 0.05, we were able to ***reject*** the null hypothesis that there was no change. With the data set we analyzed, there was a significant change from before to after reopening in Florida.
 
 #### Limitations
 
