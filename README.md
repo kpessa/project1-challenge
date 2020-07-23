@@ -295,7 +295,7 @@ print(f"p-value: {pvalue:.4f}")
 </details>
 <br/>
 
-    **p-value** = 0.00000026
+**p-value** = 0.00000026
 
 #### 6. Decide
 
@@ -309,7 +309,7 @@ print(f"p-value: {pvalue:.4f}")
 
 2. The COVID Tracking Project has only just recently said they were able to track hospitalizations on July 10th
    
-![](Images/limitation_2.png)
+![](Images/limitation_2_1.png)
 
 1. Concerned that Florida Department of Health dataset is being politicized because it shows a sharp dropoff after July 10th, which doesn't match with COVID Tracking dataset
 
