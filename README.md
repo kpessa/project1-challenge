@@ -311,7 +311,7 @@ print(f"p-value: {pvalue:.4f}")
    
 ![](Images/limitation_2_1.png)
 
-1. Concerned that Florida Department of Health dataset is being politicized because it shows a sharp dropoff after July 10th, which doesn't match with COVID Tracking dataset
+3. Concerned that Florida Department of Health dataset is being politicized because it shows a sharp dropoff after July 10th, which doesn't match with COVID Tracking dataset
 
 ![](Images/image000041.png)
 
