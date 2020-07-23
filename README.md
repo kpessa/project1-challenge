@@ -5,6 +5,11 @@
 [Google Doc with Project Info](https://docs.google.com/document/d/1eqhODgskdKG3WJYACiSXgGqDT9dvwouSgv8UbxjRPY0/edit?usp=sharing)
 
 ___
+
+**CHIKA**
+
+<details><summary>Expand to view</summary>
+
 ### Motivation
 
 - **Core message** 
@@ -41,8 +46,14 @@ ___
 ```
 </details>
 
+</details>
 ___
 
+    
+**KURT**
+
+<details><summary>Expand to view</summary>
+    
 #### Step 2: Data Processing & Data Cleaning
 
 **CSV clean up**
@@ -64,6 +75,7 @@ new_csv_data_df1
 ```
 
 </details>
+<br/>
 
 **Single group**
 
@@ -168,7 +180,6 @@ new_csv_data_df1
 </details>
 <br/>
 
-</details>
 
 ![](Images/image000039.png)
 
@@ -200,15 +211,22 @@ new_csv_data_df1
 ```
 </details>
 <br/>
-**p-value** = 0.00000026
+
+    **p-value** = 0.00000026
 
 #### 6. Decide
 
 * We are able to ***reject*** the null hypothesis that there was no change. With the data set we analyzed, there was a significant change from before to after reopening in Florida.
 
+</details>
 ___
 
+**KELSEY**
+    
+<details><summary>Expand to view</summary>
+
 ### Part 2: Analysis and Visualizations
+
 
 #### 1. Total number of cases
 
@@ -324,9 +342,8 @@ ____
 
 </details>
 <br/>
-
 ____
-
+    
 #### 6. Total Number of Hospitalizations
 
 ![](Images/total_hospitalization.JPG)
@@ -343,9 +360,19 @@ ____
 </details>
 <br/>
 
-____
+#### 7. Total Number of Hospitalizations by County 
+    
+![](Images/hosp_total_county.PNG)    
+    
+</details>
+</details>
+___
 
-#### 7. Percentage of hospitalizations by gender
+**LIBARDO**
+
+<details><summary>Expand to view</summary>
+    
+#### 8. Percentage of hospitalizations by gender
 
 ![](Images/steps_presentation/10_male_female_dist.png)
 
@@ -384,7 +411,7 @@ ____
 
 ____
 
-#### 8. Total and Percentage of hospitalizations by age group
+#### 9. Total and Percentage of hospitalizations by age group
 
 ![](Images/percentage_age_group_all.png)
 
@@ -411,7 +438,7 @@ ____
 
 ____
 
-#### 9. Hospitalizations by date
+#### 10. Hospitalizations by date
 
 ![](Images/steps_presentation/11_hosp_by_case.png)
 
@@ -435,7 +462,7 @@ ____
 
 ____
 
-#### 10. Compare travel-related hospitalization and travel-related cases
+#### 11. Compare travel-related hospitalization and travel-related cases
 
 ![](Images/travel_related_cases_all.png)
 
@@ -458,7 +485,7 @@ ____
 
 ____
 
-#### 11. Hospitalization by county before reopening 
+#### 12. Hospitalization by county before reopening 
 
 ![](Images/total_hospitalization_before.JPG)
 
@@ -483,7 +510,7 @@ ____
 
 ____
 
-#### 12. Hospitalization by county after reopening
+#### 13. Hospitalization by county after reopening
 
 ![](Images/total_hospitalization_after.JPG)
 
@@ -505,7 +532,7 @@ plt.show()
 
 ____
 
-#### 13. Statistical summaries 
+#### 14. Statistical summaries 
 
 
 ![](Images/avg_age_before.png)
@@ -516,12 +543,23 @@ ____
 
 ![](Images/summary_age_stat.png)
 
+</details>
+<br/>
+____
+    
+**CHIKA**
+
+<details><summary>Expand to view</summary>
+    
 ### Part 3: Discussion & Conclusions 
 - **Discussion**: It was clear from our analysis that the top three states that had the highest hospitalization rates after Florida reopened were Dade County, Broward County and Palm Beach County. Additional, men were equally as likely to be hospitalized as women were. Most cases and hospitalizated case were not travel-related which may offer an insight that the cases were most likely as a result of community spread. The average age of all hospitalized patients was approximately 63 years and the median age was 65 years. We also looked at this statistics after separating the data to before and after reopening. The average age and median age for both groups were in the 60s. Although hospitalization rates seemed like it rose after reopening, there was a sharp decline in July as eveidenced from the graph. However, this decline is question due to the limitations of the data
 
 - **Limitations**: Florida data provided had many unknown variables so it was difficult to put together a strong case. Although information for cases was provided, information on hoispitalization that may have resulted from the cases was not unknown in many cases. We can argue that the cases increased after reopning before it saw a sharp decline, we need more information to ensure our research is valid and realiable. 
+    
+</details>
+<br/>    
 
-### Questions
+### Questions?
 
 
 
