@@ -328,7 +328,6 @@ ___
 
 ### Part 2: Analysis and Visualizations
 
-
 #### 1. Total number of cases
 
 ![](Images/steps_presentation/05_number_cases.png)
@@ -639,13 +638,19 @@ ____
 ![](Images/avg_age_before.png)
 
 
+
 ![](Images/avg_age_after.png)
 
-
+    
+    
 ![](Images/summary_age_stat.png)
+    
+
 
 </details>
-<br/>
+   
+</details>
+
 ____
     
 **CHIKA**
