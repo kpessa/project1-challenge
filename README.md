@@ -304,7 +304,7 @@ print(f"p-value: {pvalue:.4f}")
 
 * Because p (0.00000026) < 0.05, we were able to ***reject*** the null hypothesis that there was no change. With the data set we analyzed, there was a significant change from before to after reopening in Florida.
 
-#### Limitations
+#### Insights we didnt anticipate when exploring the data set
 
 1. Original data scientist for Florida GIS fired at reopening
    
