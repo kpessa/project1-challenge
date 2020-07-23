@@ -52,6 +52,8 @@ ___
     
 **KURT**
 
+<details><summary>Expand to view</summary>
+
 # COVID-19
 ---------
 <table align="left">
