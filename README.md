@@ -22,7 +22,7 @@ ___
    
 - **Research Questions**
 > **“Has hospitalizations (#) in Florida changed since reopening?”**
-> **"If yes, how much did it increase?"**
+> **"If yes, how much did it change?"**
 > **"How does hospitalization vary by age, county, gender and similar factors?"**
 
 
