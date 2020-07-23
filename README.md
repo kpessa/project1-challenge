@@ -188,6 +188,9 @@ new_csv_data_df1
     2. After opening  
 * Decide on the **date**:
     * May 4th - restaurants opening to 25% capacity
+
+![](Images/reopening.png)
+
 * Pick sample size:
     * Decided on **30 days** before and after
 
