@@ -149,63 +149,102 @@ new_csv_data_df1
     </tr>
 </table>
 
-**1. Identify**
-- **Population**: Florida residents and Transients
-(divide Hospitalization data in two groups):
-    1. **Date set 1**: Prior to opening (< 05-04-2020)
-    2. **Date set 2**: After opening  (> 05-04-2020)
-* **Information on dates**:
+<details><summary>Expand to view code</summary>
 
+```python
+# Plotting summary of hospitalizations in Florida
+df = step2.get_hospitalizations_by_casedatetime()
+plt.figure(figsize=(10,4))
+plt.scatter(df['CaseDateTime'],df['Hospitalized'])
+plt.title("Hospitalization in Florida")
+plt.ylabel("Hospitalized")
+plt.xlim((dt.date(2020,3,1),dt.date(2020,8,1)))
+
+# Using mdates.ConciseDateFormatter for xlabels
+locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
+formatter = mdates.ConciseDateFormatter(locator)
+ax = plt.gca()
+ax.xaxis.set_major_formatter(formatter)
+plt.xlabel("Date")
+plt.savefig("Images/hospitalization_in_florida_summary.png")
+```
+
+</details>
+<br/>
+
+![](Images/hospitalization_in_florida_summary.png)
+
+#### Research Question to Answer:
+* “Has hospitalizations (#) in Florida changed since reopening?"
+
+#### 1. Identify
+- **Populations** (divide Hospitalization data into two groups of data):
+    1. Prior to opening
+    2. After opening  
+* Decide on the **date**:
     * May 4th - restaurants opening to 25% capacity
-    * June  (Miami opening beaches)
+* Pick sample size:
+    * Decided on **30 days** before and after
+
+<details><summary>Expand to view code</summary>
+
+```python
+# Plot data set 30 days prior and after reopening
+df = step2.get_hospitalizations_by_casedatetime()
+filt1 = (df['CaseDateTime'] >= (dt.datetime(2020,5,4)-dt.timedelta(days=30)))
+filt2 = (df['CaseDateTime'] <= (dt.datetime(2020,5,4)+dt.timedelta(days=30)))
+filt = (filt1 & filt2)
+df = df[filt]
+plt.figure(figsize=(10,6))
+plt.scatter(df['CaseDateTime'],df["Hospitalized"])
+plt.xlim((dt.datetime(2020,5,4)-dt.timedelta(days=32)),(dt.datetime(2020,5,4)+dt.timedelta(days=32)))
+plt.vlines(dt.datetime(2020,5,4), 0, 270, linestyles ="dotted", colors ="k") 
+plt.annotate("Florida reopens", (dt.datetime(2020,5,5),250))
+plt.title("Hospitalizations in Florida before and after reopening")
+plt.ylabel("New Hospitalizations")
+plt.xlabel("Date")
+locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
+formatter = mdates.ConciseDateFormatter(locator)
+ax = plt.gca()
+ax.xaxis.set_major_formatter(formatter)
+plt.savefig("Images/hospitalizations_before_and_after_reopening_0.png")
+plt.show()
+```
+
+</details>
+<br/>
+
+![](Images/hospitalizations_before_and_after_reopening_0.png)
 
 #### 2. State the hypotheses
 - **H0**: There is no change in hospitalizations after Florida has reopened
 - **H1**: There is an increase in hospitalizations after Florida has reopened
 
 
-#### 3. Interesting figures developed during exploration
-- Considered 14 days COVID-19 incubation period
-
-![](Images/image000040.png)
+#### 3. Characteristics of the comparison distribution
 
 - Population means, standard deviations
 
-![](Images/before_and_after_reopening1.JPG)
+![](Images/image000047_1.png)
 
 <details><summary>Expand to view code</summary>
 
-​```python
-    sample1 = df1['Hospitalized']
-    sample2 = df2['Hospitalized']
-    pd.DataFrame({
-        "Before Opening:": sample1.describe(),
-        "After Opening": sample2.describe()
-    }).style.format("{:.1f}")
-    
+```python
+sample1 = df1['Hospitalized']
+sample2 = df2['Hospitalized']
+pd.DataFrame({
+    "Before Opening:": sample1.describe(),
+    "After Opening": sample2.describe()
+}).style.format("{:.1f}")
 ```
+
 </details>
 <br/>
 
-<details><summary>Expand to view code</summary>
-
-    ```python
-    sample1 = df1['Hospitalized']
-    sample2 = df2['Hospitalized']
-    pd.DataFrame({
-        "Before Opening:": sample1.describe(),
-        "After Opening": sample2.describe()
-    }).style.format("{:.1f}")
-```
-</details>
-<br/>
-
-
-![](Images/image000039.png)
+![](Images/image000040.png)
 
 #### 4. Critical values
 - p = 0.05
-=======
 - Our hypothesis is nondirectional so our hypothesis test is **two-tailed**
 - **Test used** = T-Test
 - **p-value** = 0.0006
@@ -213,8 +252,9 @@ new_csv_data_df1
 <details><summary>Expand to view code</summary>
 
 ```python
-    statistic, pvalue = stats.ttest_ind_from_stats(grouped_before["Hospitalized"].mean(),grouped_before["Hospitalized"].std(),grouped_before["Hospitalized"].size,grouped_after["Hospitalized"].mean(),grouped_after["Hospitalized"].std(),grouped_after["Hospitalized"].size)
-    print(f"p-value: {pvalue:.4f}")
+
+statistic, pvalue = stats.ttest_ind_from_stats(grouped_before["Hospitalized"].mean(),grouped_before["Hospitalized"].std(),grouped_before["Hospitalized"].size,grouped_after["Hospitalized"].mean(),grouped_after["Hospitalized"].std(),grouped_after["Hospitalized"].size)
+print(f"p-value: {pvalue:.4f}")
     
 ```
 </details>
