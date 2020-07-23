@@ -47,7 +47,7 @@ ___
 </details>
 
 </details>
-___
+<br/>
 
     
 **KURT**
@@ -188,9 +188,6 @@ new_csv_data_df1
     2. After opening  
 * Decide on the **date**:
     * May 4th - restaurants opening to 25% capacity
-
-![](Images/reopening.png)  
-
 * Pick sample size:
     * Decided on **30 days** before and after
 
@@ -302,9 +299,9 @@ print(f"p-value: {pvalue:.4f}")
 
 #### 6. Decide
 
-* Because p (0.00000026) < 0.05, we were able to ***reject*** the null hypothesis that there was no change. With the data set we analyzed, there was a significant change from before to after reopening in Florida.
+* We are able to ***reject*** the null hypothesis that there was no change. With the data set we analyzed, there was a significant change from before to after reopening in Florida.
 
-#### Insights we didnt anticipate when exploring the data set
+#### Limitations
 
 1. Original data scientist for Florida GIS fired at reopening
    
@@ -314,19 +311,20 @@ print(f"p-value: {pvalue:.4f}")
    
 ![](Images/limitation_2_1.png)
 
-3. Concerned that Florida Department of Health dataset is being politicized because it shows a sharp dropoff after July 10th, which doesn't match with COVID Tracking dataset
+1. Concerned that Florida Department of Health dataset is being politicized because it shows a sharp dropoff after July 10th, which doesn't match with COVID Tracking dataset
 
 ![](Images/image000041.png)
 
 
 </details>
-___
+<br/>
 
 **KELSEY**
     
 <details><summary>Expand to view</summary>
 
 ### Part 2: Analysis and Visualizations
+
 
 #### 1. Total number of cases
 
@@ -466,7 +464,7 @@ ____
     
 </details>
 </details>
-___
+<br/>
 
 **LIBARDO**
 
@@ -638,20 +636,13 @@ ____
 ![](Images/avg_age_before.png)
 
 
-
 ![](Images/avg_age_after.png)
 
-    
-    
+
 ![](Images/summary_age_stat.png)
-    
-
 
 </details>
-   
-</details>
-
-____
+<br/>
     
 **CHIKA**
 
