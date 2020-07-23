@@ -69,6 +69,7 @@ def get_groups(group_name = "CaseDateTime", opening_date = dt.datetime(2020,5,4)
     df2 = df2.groupby(by=group_name).count().reset_index()[[group_name,"Hospitalized"]] 
     return (df1,df2)
 
+
 def get_group(group_name="CaseDateTime",option="default"):
         
     if option == "main":
@@ -76,7 +77,16 @@ def get_group(group_name="CaseDateTime",option="default"):
     elif option == "default":
         df=get_hospitalized_data()
     
-    return df.groupby(by=group_name).count().reset_index()[[group_name,"Hospitalized"]].sort_values(by=group_name)
+    if group_name=="Age_group":
+        df = df.groupby(by=group_name).count().reset_index()
+        df.index = [1,3,4,5,6,2,7,8,9,10]
+        df = df[[group_name,"Hospitalized"]]
+        df = df.sort_index()
+        return df
+    else:
+        df = df.groupby(by=group_name).count().reset_index()
+        df = df[[group_name,"Hospitalized"]].sort_values(by=group_name)
+        return df
 
 def get_top10_counties_by_percentage():
     df = get_hospitalized_data()
