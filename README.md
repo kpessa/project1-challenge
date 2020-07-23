@@ -250,7 +250,7 @@ pd.DataFrame({
 
 
 
-#### 5. Distribution 
+#### 4. Distribution 
 
 <details><summary>Expand to view code</summary>
 
@@ -279,7 +279,7 @@ plt.show()
 ![](Images/before_and_after_histogram.png)
 
 
-#### 4. Critical values
+#### 5. Critical values
 - p = 0.05
 - Our hypothesis is nondirectional so our hypothesis test is **two-tailed**
 - **Test used** = T-Test
