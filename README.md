@@ -5,17 +5,26 @@
 [Google Doc with Project Info](https://docs.google.com/document/d/1eqhODgskdKG3WJYACiSXgGqDT9dvwouSgv8UbxjRPY0/edit?usp=sharing)
 
 ___
+### Motivation
+
+- **Core message** 
+   - Coronavirus disease 2019 (COVID-19) is an infectious disease caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). 
+   - First identified in December 2019 in Wuhan, Hubei, China, and has resulted in an ongoing pandemic.
+   - First confirmed case has been traced back to 17 November 2019 in Hubei
+   - As of 23 July 2020, more than 15.2 million cases have been reported across 188 countries and territories, resulting in more than 623,000 deaths. 
+   - Florida is currently considered an epi-center for the virus with 380,000 and at least 5,000 deaths.
+   - With cases surging, hospitals across the country are reporting an uptick in hospitalization rate and ICU admissions. 
+   
+- **Research Questions**
+> **“Has hospitalizations (#) in Florida changed since reopening?”**
+> **"If yes, how much did it increase?"**
+> **"How does hospitalization vary by age, county, gender and similar factors?"**
+
 
 ### Data set used:
 **Florida COVID19 Case Line Data** from the Florida Department of Health Open Data. [Available Here](https://open-fdoh.hub.arcgis.com/datasets/florida-covid19-case-line-data)
 
 ![](Images/florida_covid19_data.jpg)
-___
-### Motivation & Summary Slide
-
-**Research Question**
-> **“Has hospitalizations (#) in Florida changed since reopening?”**
-**Add why we decided to ask the question
 
 ### Process of Data Analysis
 ![](Images/data_process.png)
@@ -402,7 +411,7 @@ ____
 
 ____
 
-#### 9. Hospitalizations by case
+#### 9. Hospitalizations by date
 
 ![](Images/steps_presentation/11_hosp_by_case.png)
 
@@ -508,6 +517,11 @@ ____
 ![](Images/summary_age_stat.png)
 
 ### Part 3: Discussion & Conclusions 
+- **Discussion**: It was clear from our analysis that the top three states that had the highest hospitalization rates after Florida reopened were Dade County, Broward County and Palm Beach County. Additional, men were equally as likely to be hospitalized as women were. Most cases and hospitalizated case were not travel-related which may offer an insight that the cases were most likely as a result of community spread. The average age of all hospitalized patients was approximately 63 years and the median age was 65 years. We also looked at this statistics after separating the data to before and after reopening. The average age and median age for both groups were in the 60s. Although hospitalization rates seemed like it rose after reopening, there was a sharp decline in July as eveidenced from the graph. However, this decline is question due to the limitations of the data
+
+- **Limitations**: Florida data provided had many unknown variables so it was difficult to put together a strong case. Although information for cases was provided, information on hoispitalization that may have resulted from the cases was not unknown in many cases. We can argue that the cases increased after reopning before it saw a sharp decline, we need more information to ensure our research is valid and realiable. 
+
+### Questions
 
 
 
