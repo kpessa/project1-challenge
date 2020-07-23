@@ -103,7 +103,7 @@ new_csv_data_df1
 
 **Two groups: before and after opening**
 
-![](Images/steps_presentation/03_two_groups.png)
+![](Images/steps_presentation/03_two_groups_2.png)
 
 <details><summary>Expand to view code</summary>
 
