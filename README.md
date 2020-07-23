@@ -53,6 +53,56 @@ ___
 **KURT**
 
 <details><summary>Expand to view</summary>
+
+# COVID-19
+---------
+<table align="left">
+    <tr align="left">
+        <th width="15%">
+            <img src=Images/magnifying_glass.png align="left">
+        </th>
+        <th align="left"> 
+            <p align="left" style="font-size:18px"> Decided to look at hospitalizations!</p>
+            <ol align="left" style="font-style:normal;font-family:arial;font-size:14px;">
+                <li align="left" style="margin:15px 0"> Testing agnostic</li>
+                <li align="left" style="margin:15px 0"> Can indicate:
+                    <ol style="margin:10px 0">
+                        <li style="margin:10px 0"> Case burden</li>
+                        <li style="margin:10px 0"> Financial impact</li>
+                        <li style="margin:10px 0"> Severity of cases</li>
+                    </ol>
+                </li>
+            </ol>
+        </th>
+    </tr>
+</table>
+
+<details><summary>Expand to view code</summary>
+
+```python
+# Plotting summary of hospitalizations in Florida
+df = step2.get_hospitalizations_by_casedatetime()
+plt.figure(figsize=(10,4))
+plt.scatter(df['CaseDateTime'],df['Hospitalized'])
+plt.title("Hospitalization in Florida")
+plt.ylabel("Hospitalized")
+plt.xlim((dt.date(2020,3,1),dt.date(2020,8,1)))
+
+# Using mdates.ConciseDateFormatter for xlabels
+locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
+formatter = mdates.ConciseDateFormatter(locator)
+ax = plt.gca()
+ax.xaxis.set_major_formatter(formatter)
+plt.xlabel("Date")
+plt.savefig("Images/hospitalization_in_florida_summary.png")
+```
+
+</details>
+<br/>
+
+![](Images/hospitalization_in_florida_summary.png)
+
+<details><summary>Data Processing & Data Cleaning</summary>
     
 #### Step 2: Data Processing & Data Cleaning
 
@@ -126,117 +176,148 @@ new_csv_data_df1
 </details>
 <br/>
 
-# COVID-19
----------
-<table align="left">
-    <tr align="left">
-        <th width="15%">
-            <img src=Images/magnifying_glass.png align="left">
-        </th>
-        <th align="left"> 
-            <p align="left" style="font-size:18px"> Decided to look at hospitalizations!</p>
-            <ol align="left" style="font-style:normal;font-family:arial;font-size:14px;">
-                <li align="left" style="margin:15px 0"> Testing agnostic</li>
-                <li align="left" style="margin:15px 0"> Can indicate:
-                    <ol style="margin:10px 0">
-                        <li style="margin:10px 0"> Case burden</li>
-                        <li style="margin:10px 0"> Financial impact</li>
-                        <li style="margin:10px 0"> Severity of cases</li>
-                    </ol>
-                </li>
-            </ol>
-        </th>
-    </tr>
-</table>
+</details>
+<br/>
 
-**1. Identify**
-- **Population**: Florida residents and Transients
-(divide Hospitalization data in two groups):
-    1. **Date set 1**: Prior to opening (< 05-04-2020)
-    2. **Date set 2**: After opening  (> 05-04-2020)
-* **Information on dates**:
+#### Research Question to Answer:
+* “Has hospitalizations (#) in Florida changed since reopening?"
 
+#### 1. Identify
+- **Populations** (divide Hospitalization data into two groups of data):
+    1. Prior to opening
+    2. After opening  
+* Decide on the **date**:
     * May 4th - restaurants opening to 25% capacity
-    * June  (Miami opening beaches)
+
+![](Images/reopening.png)  
+
+* Pick sample size:
+    * Decided on **30 days** before and after
+
+<details><summary>Expand to view code</summary>
+
+```python
+# Plot data set 30 days prior and after reopening
+df = step2.get_hospitalizations_by_casedatetime()
+filt1 = (df['CaseDateTime'] >= (dt.datetime(2020,5,4)-dt.timedelta(days=30)))
+filt2 = (df['CaseDateTime'] <= (dt.datetime(2020,5,4)+dt.timedelta(days=30)))
+filt = (filt1 & filt2)
+df = df[filt]
+plt.figure(figsize=(10,6))
+plt.scatter(df['CaseDateTime'],df["Hospitalized"])
+plt.xlim((dt.datetime(2020,5,4)-dt.timedelta(days=32)),(dt.datetime(2020,5,4)+dt.timedelta(days=32)))
+plt.vlines(dt.datetime(2020,5,4), 0, 270, linestyles ="dotted", colors ="k") 
+plt.annotate("Florida reopens", (dt.datetime(2020,5,5),250))
+plt.title("Hospitalizations in Florida before and after reopening")
+plt.ylabel("New Hospitalizations")
+plt.xlabel("Date")
+locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
+formatter = mdates.ConciseDateFormatter(locator)
+ax = plt.gca()
+ax.xaxis.set_major_formatter(formatter)
+plt.savefig("Images/hospitalizations_before_and_after_reopening_0.png")
+plt.show()
+```
+
+</details>
+<br/>
+
+![](Images/hospitalizations_before_and_after_reopening_0.png)
 
 #### 2. State the hypotheses
 - **H0**: There is no change in hospitalizations after Florida has reopened
 - **H1**: There is an increase in hospitalizations after Florida has reopened
 
 
-#### 3. Interesting figures developed during exploration
-- Considered 14 days COVID-19 incubation period
-
-![](Images/image000040.png)
+#### 3. Characteristics of the comparison distribution
 
 - Population means, standard deviations
 
-![](Images/before_and_after_reopening1.JPG)
-
-<details><summary>Expand to view code</summary>
-
-​```python
-    sample1 = df1['Hospitalized']
-    sample2 = df2['Hospitalized']
-    pd.DataFrame({
-        "Before Opening:": sample1.describe(),
-        "After Opening": sample2.describe()
-    }).style.format("{:.1f}")
-    
-```
-</details>
-<br/>
-
-<details><summary>Expand to view code</summary>
-
-    ```python
-    sample1 = df1['Hospitalized']
-    sample2 = df2['Hospitalized']
-    pd.DataFrame({
-        "Before Opening:": sample1.describe(),
-        "After Opening": sample2.describe()
-    }).style.format("{:.1f}")
-```
-</details>
-<br/>
-
-
-![](Images/image000039.png)
-
-#### 4. Critical values
-- p = 0.05
-=======
-- Our hypothesis is nondirectional so our hypothesis test is **two-tailed**
-- **Test used** = T-Test
-- **p-value** = 0.0006
+![](Images/image000047_1.png)
 
 <details><summary>Expand to view code</summary>
 
 ```python
-    statistic, pvalue = stats.ttest_ind_from_stats(grouped_before["Hospitalized"].mean(),grouped_before["Hospitalized"].std(),grouped_before["Hospitalized"].size,grouped_after["Hospitalized"].mean(),grouped_after["Hospitalized"].std(),grouped_after["Hospitalized"].size)
-    print(f"p-value: {pvalue:.4f}")
-    
+sample1 = df1['Hospitalized']
+sample2 = df2['Hospitalized']
+pd.DataFrame({
+    "Before Opening:": sample1.describe(),
+    "After Opening": sample2.describe()
+}).style.format("{:.1f}")
 ```
+
 </details>
 <br/>
 
-#### 5. Distribution 
-     
+![](Images/image000040.png)
+
+
+
+#### 4. Distribution 
+
+<details><summary>Expand to view code</summary>
+
+```python
+# Scatter Plot of Data
+plt.figure(figsize=(10,6))
+plt.subplot(2, 1, 1)
+plt.scatter(range(len(sample1)), sample1, label="before")
+plt.scatter(range(len(sample2)), sample2, label="after")
+plt.legend()
+
+# Histogram Plot of Data
+plt.subplot(2, 1, 2)
+plt.hist(sample1, 20, density=True, alpha=0.7, label="before")
+plt.hist(sample2, 20, density=True, alpha=0.7, label="after")
+plt.axvline(sample1.mean(), color='k', linestyle='dashed', linewidth=1)
+plt.axvline(sample2.mean(), color='k', linestyle='dashed', linewidth=1)
+plt.legend()  
+plt.savefig("Images/before_and_after_histogram.png")
+plt.show()
+```
+
+</details>
+<br/>
+
 ![](Images/before_and_after_histogram.png)
 
+
+#### 5. Critical values
+- p = 0.05
+- Our hypothesis is nondirectional so our hypothesis test is **two-tailed**
+- **Test used** = T-Test
+
 <details><summary>Expand to view code</summary>
+
 ```python
-    statistic, pvalue = stats.ttest_ind_from_stats(sample1.mean(),sample1.std(),sample1.size,sample2.mean(),sample2.std(),sample2.size)
-    print(f"p-value: {pvalue:.8f}")
+
+statistic, pvalue = stats.ttest_ind_from_stats(grouped_before["Hospitalized"].mean(),grouped_before["Hospitalized"].std(),grouped_before["Hospitalized"].size,grouped_after["Hospitalized"].mean(),grouped_after["Hospitalized"].std(),grouped_after["Hospitalized"].size)
+print(f"p-value: {pvalue:.4f}")
+    
 ```
 </details>
 <br/>
 
-    **p-value** = 0.00000026
+**p-value** = 0.00000026
 
 #### 6. Decide
 
-* We are able to ***reject*** the null hypothesis that there was no change. With the data set we analyzed, there was a significant change from before to after reopening in Florida.
+* Because p (0.00000026) < 0.05, we were able to ***reject*** the null hypothesis that there was no change. With the data set we analyzed, there was a significant change from before to after reopening in Florida.
+
+#### Limitations
+
+1. Original data scientist for Florida GIS fired at reopening
+   
+![](Images/limitation_1.png)
+
+2. The COVID Tracking Project has only just recently said they were able to track hospitalizations on July 10th
+   
+![](Images/limitation_2_1.png)
+
+3. Concerned that Florida Department of Health dataset is being politicized because it shows a sharp dropoff after July 10th, which doesn't match with COVID Tracking dataset
+
+![](Images/image000041.png)
+
 
 </details>
 ___
